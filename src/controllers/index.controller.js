@@ -8,7 +8,10 @@ const pool = new Pool({
     user: 'team2424',
     password: 'team2424',
     database: 'DBProduction',
-    port: '5432'
+    port: '5432',
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 const getUsers = async (req,res)=>{
     const response = await pool.query('select * from carowner');
