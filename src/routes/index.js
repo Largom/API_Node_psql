@@ -2,7 +2,8 @@ const {Router} = require('express');
 const router = Router();
 
 
-const  { getUsers } = require('../controllers/index.controller')
-router.get('/users', getUsers)
+const  { getCars, getCarById } = require('../controllers/index.controller')
+router.get('/getALL', getCars);
+router.get('/get/:id', getCarById);
 
 module.exports = router;
