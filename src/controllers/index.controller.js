@@ -1,5 +1,7 @@
 
 const {Pool} = require('pg');
+//import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+const { GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
 
 // const connUrl = postgres://{username}:{passoword}@{endpoint}:{port}/{database} 
 
@@ -13,6 +15,10 @@ const pool = new Pool({
         rejectUnauthorized: false
     }
 });
+//const AWS = require('aws-sdk');
+const client = new S3Client({region:"us-east-1"});
+
+
 const getCars = async (req,res)=>{
     const response = await pool.query('select * from carowner');
     res.json(response.rows);
@@ -23,4 +29,21 @@ const getCarById = async (req,res)=>{
     res.json(response.rows);
 }
 
-module.exports = {getCars, getCarById}
+const getBucketId = async (req,res)=>{
+  
+     const command = new GetObjectCommand({
+        Bucket: "bucket-de-prueba-para-get-objects",
+        Key: "vehicle_0000.txt",
+      });
+    
+      try {
+        const response = await client.send(command);
+        // The Body object also has 'transformToByteArray' and 'transformToWebStream' methods.
+        const str = await response.Body.transformToString();
+        res.json(str);
+        console.log(str);
+      } catch (err) {
+        console.error(err);
+      }; 
+}
+module.exports = {getCars, getCarById, getBucketId}

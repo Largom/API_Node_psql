@@ -14,6 +14,8 @@ app.use(require('./routes/index'));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
+
+
 //start http server
 const httpServer = http.createServer(app);
 const port = 18000
