@@ -32,8 +32,8 @@ const getCarById = async (req,res)=>{
 const getBucketId = async (req,res)=>{
   
      const command = new GetObjectCommand({
-        Bucket: "bucket-de-prueba-para-get-objects",
-        Key: "vehicle_0000.txt",
+        Bucket: "connected-car-mybucket-qf0ovqdou67areq",
+        Key: req.params.id,
       });
     
       try {
