@@ -40,7 +40,7 @@ const getId2 = async (req,res)=>{
 }
 const getId1 = async (req,res)=>{
     console.log([req.query.id]);
-    const response = await pool.query('select * from carowner where carid = $1', [req.query.id]);
+    const response = await pool.query('select * from carowner where carid = ' + req.query.id);
     res.json(response.rows);
 }
 
