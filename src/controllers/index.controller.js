@@ -43,16 +43,14 @@ const getId1 = async (req,res)=>{
 
     const parsedUrl = url.parse(req.url, true);
     const id = parsedUrl.query.id;
-    const response = await pool.query("select * from carowner where carid = '1'");
+    const response = await pool.query('select * from carowner');
     res.json(response.rows);
 }
 
 const getBucketId = async (req,res)=>{
-     console.log("BUCKET");
      const command = new GetObjectCommand({
-        Bucket: "connected-car-mybucket-qf0ovqdou67areq",
-       Key: req.query.id,
-       //Key: "/home/javi/proyectos/connected-car-data/vehicle_0004.log"
+       Bucket: "connected-car-mybucket-qf0ovqdou67a",
+       Key: "/home/javi/proyectos/connected-car2-data/vehicle02-LG-2024.02.10.210000.log"
       });
     
       try {
