@@ -34,13 +34,16 @@ const getCarById = async (req,res)=>{
     res.json(response.rows);
 }
 const getId2 = async (req,res)=>{
-    console.log([req.query.id]);
-    const response = await pool.query('select * from carowner where s3name = $1', [req.query.id]);
+    const parsedUrl = url.parse(req.url, true);
+    const id = parsedUrl.query.id;
+    const response = await pool.query('select * from carowner where s3name = $1', [id]);
     res.json(response.rows);
 }
 const getId1 = async (req,res)=>{
-    console.log([req.query.id]);
-    const response = await pool.query('select * from carowner where carid = "1"');
+
+    const parsedUrl = url.parse(req.url, true);
+    const id = parsedUrl.query.id;
+    const response = await pool.query("select * from carowner where carid = '1'");
     res.json(response.rows);
 }
 
