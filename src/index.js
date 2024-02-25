@@ -20,6 +20,10 @@ const port = 18000
 httpServer.listen(port);
 console.log('http server listening at port ${port}');
 
+app.get('/', function(request, response){
+    response.sendFile(__dirname +'/views/index.html');
+ })
+
 module.exports = {app};
 
 //app.listen(18000);

@@ -10,7 +10,12 @@ const pool = new Pool({
     user: 'team2424',
     password: 'team2424',
     database: 'DBProduction',
-    port: '5432',
+    //port: '5432',
+    //user: 'javi',
+    //host: 'connectedcarinstance.cxpfpf5cvaud.us-east-1.rds.amazonaws.com',
+    //database: 'connectedcardb',
+    //password: 'javijavi',
+    port: 5432,
     ssl: {
         rejectUnauthorized: false
     }
@@ -28,12 +33,17 @@ const getCarById = async (req,res)=>{
     const response = await pool.query('select * from carowner where s3name = $1', [req.params.id]);
     res.json(response.rows);
 }
+const getBucketId2 = async (req,res)=>{
+    const response = await pool.query('select * from carowner where s3name = $1', [req.query.id]);
+    res.json(response.rows);
+}
 
 const getBucketId = async (req,res)=>{
-  
+     console.log("BUCKET");
      const command = new GetObjectCommand({
         Bucket: "connected-car-mybucket-qf0ovqdou67areq",
-        Key: req.params.id,
+       Key: req.query.id,
+       //Key: "/home/javi/proyectos/connected-car-data/vehicle_0004.log"
       });
     
       try {
@@ -46,4 +56,4 @@ const getBucketId = async (req,res)=>{
         console.error(err);
       }; 
 }
-module.exports = {getCars, getCarById, getBucketId}
+module.exports = {getCars, getCarById, getBucketId, getBucketId2}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+  <script>
+  fetch("http://albproyect-322924016.us-east-1.elb.amazonaws.com/get/all").then(
+    response => {
+      response.json().then(
+        data => {
+          console.log(data);
+          if (data.length > 0) {
+            let keys = Object.keys(data[0]);
+            var temp = "";
+            
+            data.forEach((itemData) => {
+              var url ="http://albproyect-322924016.us-east-1.elb.amazonaws.com/get/s2?id="+itemData.s3name;
+              //var url = "http://connected-car-lb-1492437781.us-east-1.elb.amazonaws.com/get/s2?id="+itemData.s3name;
+              temp += "<tr>";
+              temp += "<td>" + itemData.carid + "</td>";
+              temp += "<td>" + itemData.ownerid+ "</td>";
+              temp += "<td>" + itemData.revised + "</td>";
+              temp += "<td>" + itemData.s3name + "</td>";
+              console.log(url);
+              temp += "<td><a href="+url+"><button>Telemetry</button></a></td></tr>";
+            });
+            document.getElementById('data').innerHTML = temp;
+          }
+        }
+      )
+    }
+  )
+
+</script>
+<h2>HTML Table</h2>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>carid</th>
+        <th>ownerid</th>
+        <th>revised</th>
+        <th>s3name</th>
+        <th>Properties</th>
+      </tr>
+    </thead>
+    <tbody id="data">
+
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
