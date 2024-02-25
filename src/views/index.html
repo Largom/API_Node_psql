@@ -31,8 +31,8 @@ tr:nth-child(even) {
             var temp = "";
             
             data.forEach((itemData) => {
-              var url ="http://albproyect-322924016.us-east-1.elb.amazonaws.com/get/s2?id="+itemData.s3name;
-              //var url = "http://connected-car-lb-1492437781.us-east-1.elb.amazonaws.com/get/s2?id="+itemData.s3name;
+              //var url ="http://albproyect-322924016.us-east-1.elb.amazonaws.com/get/s2?id="+itemData.s3name;
+              var url = "http://connected-car-lb-1492437781.us-east-1.elb.amazonaws.com/get/s3?id="+itemData.s3name;
               temp += "<tr>";
               temp += "<td>" + itemData.carid + "</td>";
               temp += "<td>" + itemData.ownerid+ "</td>";
