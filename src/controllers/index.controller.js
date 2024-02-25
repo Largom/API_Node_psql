@@ -33,8 +33,14 @@ const getCarById = async (req,res)=>{
     const response = await pool.query('select * from carowner where s3name = $1', [req.params.id]);
     res.json(response.rows);
 }
-const getBucketId2 = async (req,res)=>{
+const getId2 = async (req,res)=>{
+    console.log([req.query.id]);
     const response = await pool.query('select * from carowner where s3name = $1', [req.query.id]);
+    res.json(response.rows);
+}
+const getId1 = async (req,res)=>{
+    console.log([req.query.id]);
+    const response = await pool.query('select * from carowner where carid = $1', [req.query.id]);
     res.json(response.rows);
 }
 
@@ -56,4 +62,4 @@ const getBucketId = async (req,res)=>{
         console.error(err);
       }; 
 }
-module.exports = {getCars, getCarById, getBucketId, getBucketId2}
+module.exports = {getCars, getCarById, getBucketId, getId1,getId2}
