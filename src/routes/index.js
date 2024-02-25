@@ -7,6 +7,6 @@ router.get('/get/all', getCars);
 router.get('/get/:id', getCarById);
 router.get('/get/s3', getBucketId);
 router.get('/get/s2', getId2);
-router.get('/get/s1', getId1);
+router.get('/get/s1', getCars);
 
 module.exports = router;
