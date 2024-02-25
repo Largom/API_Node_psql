@@ -43,7 +43,7 @@ const getId2 = async (req,res)=>{
 const getBucketId = async (req,res)=>{
      const command = new GetObjectCommand({
        Bucket: "connected-car-mybucket-qf0ovqdou67a",
-       Key: [req.query.id]
+       Key: req.query.id
       });
     
       try {
