@@ -21,7 +21,8 @@ tr:nth-child(even) {
 </head>
 <body>
   <script>
-  fetch("http://albproyect-322924016.us-east-1.elb.amazonaws.com/get/all").then(
+  //fetch("http://albproyect-322924016.us-east-1.elb.amazonaws.com/get/all").then(
+    fetch("http://connected-car-lb-1492437781.us-east-1.elb.amazonaws.com/get/all").then(
     response => {
       response.json().then(
         data => {
