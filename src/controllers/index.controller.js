@@ -1,9 +1,6 @@
 
 const {Pool} = require('pg');
-//import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 const { GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
-
-// const connUrl = postgres://{username}:{passoword}@{endpoint}:{port}/{database} 
 
 const pool = new Pool({
     //host: 'dbteam24proyect.cfkqgu0uqs4g.us-east-1.rds.amazonaws.com',
